@@ -10,7 +10,6 @@ Car::Car(int y, string m) {
     speed = 0;
 }
 
-// Accessor definitions
 int Car::getYear() {
     return year;
 }
@@ -23,7 +22,6 @@ int Car::getSpeed() {
     return speed;
 }
 
-// Behavior method definitions
 void Car::accelerate() {
     speed += 5;
 }
