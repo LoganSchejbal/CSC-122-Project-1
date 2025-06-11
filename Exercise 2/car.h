@@ -12,37 +12,17 @@ class Car {
         string make;
         int speed;
         
-    
 public:
-        Car (){
-            year = 0;
-            make = "";
-            speed = 0;
-            
-        }
+    Car(int y, string m); // Constructor
     
-    void accelerate(){
-        speed += 5;
-    }
-    
-    
-    void brake(){
-        speed -= 5;
-    }
-    
-    int getYear(){
-        return year;
-    }
-    
-    string getMake(){
-        return make;
-    }
-    
-    int getSpeed(){
-        return speed;
-    }
-        
-        
+    void accelerate();
+    void brake();
+    int getYear();
+    string getMake();
+    int getSpeed();
+
         
         
     };
+
+
