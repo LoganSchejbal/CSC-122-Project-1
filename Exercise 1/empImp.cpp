@@ -10,13 +10,13 @@ using namespace std;
         salary = money;
     }
     string employee::getFirstName() const{
-        cout << "First Name: " << firstName << endl;
+        return firstName;
     }
     string employee::getLastName() const {
-        cout << "Last Name: " << lastName << endl;
+        return lastName;
     }
     int employee::getSalary() const {
-        cout << "Salary: " << salary << endl;
+        return salary;
     }
     void employee::setFirstName(string name){
         name = firstName;
@@ -26,4 +26,7 @@ using namespace std;
     }
     void employee::setSalary(int money){
         money = salary;
+    }
+    int employee::getYearlySalary(){
+        return salary * 12;
     }

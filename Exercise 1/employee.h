@@ -17,4 +17,5 @@ class employee {
     void setFirstName(string);
     void setLastName(string);
     void setSalary(int);
+    int getYearlySalary();
 };

@@ -10,11 +10,19 @@ int main() {
     int salary;
     cout << "Enter first name: ";
     cin >> firstName;
-    cout << "Enter last name: ";
+    cout << "\nEnter last name: ";
     cin >> lastName;
-    cout << "Enter salary: ";
+    cout << "\nEnter monthly salary: ";
     cin >> salary;
+    if (salary < 0){
+        salary = 0;
+    }
+    else{
+    }
     employee emp(firstName, lastName, salary);
 
     // Display employee details
-    
+    cout << "\n" << emp.getFirstName() << " " <<emp.getLastName() << "'s yearly salary before the raise was $" << emp.getYearlySalary() << "\n" <<endl;
+    cout << emp.getFirstName() << " " << emp.getLastName() << "'s yearly salary after the raise was $" << emp.getYearlySalary() * 1.1 << "\n" <<endl;
+    return 0;    
+}
