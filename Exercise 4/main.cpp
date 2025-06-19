@@ -142,7 +142,7 @@ int main() {
     string strReplace;
     cout << "\nPart I: Function replace_all" << endl;
     cout << "Please enter a string: ";
-    cin.ignore(); // Clear the newline character from the input buffer
+    cin.ignore();
     getline(cin, strReplace);
     cout << "Please enter a substring to replace: ";
     string toReplace;
@@ -179,72 +179,91 @@ int main() {
     return 0;
 }
 
-//Part A
 // Function Implementations
+//
+//This line indicates the Part
+//This line summarizes the task
+//This line is the entire task description
+
+//Part A
 //Make x <= y after the call
 //Write a function void sort2(double* p, double* q) that receives two pointers and sorts the values to which they point. If you call sort2(&x, &y) then x <= y after the call.
 void sort2(double* p, double* q){
-
+    if (*p <= *q) {
+        return;
+    }
+    else {
+        double temp = *p;
+        *p = *q;
+        *q = temp;
+        return;
+    }
 }
 
 //Part B
-//
+//P is overwritten with x if x is greater than P
+//Return the old value to which P pointed
 //Write a function double replace_if_greater(double* p, double x) that replaces the value to which p points with x if x is greater. Return the old value to which p pointed.
 double replace_if_greater(double* p, double x){
-
+    if (x > *p){
+        double temp = *p;
+        *p = x;
+        return temp;
+    }
 }
 
 //Part C
-//
+//Find average using pointers, not indexes [i]
 //Write a function that computes the average value of an array of floating-point data: double average(double* a, int size) In the function, use a pointer variable, not an integer index, to traverse the array elements.
 double average(double* a, int size){
-
+    
 }
 
 //Part D
-//
+//Find maximum using pointers, not indexes [i]
 //Write a function that returns a pointer to the maximum value of an array of floating-point data: double* maximum(double* a, int size) If size is 0, return nullptr.
 double* maximum(double* a, int size){
 
 }
 
 //Part E
-//
+//Find first occurrence of variable "c" in string
 //Write a function that returns a pointer to the first occurrence of the character c in the string s, or nullptr if there is no match. char* find(char s[], char c)
 char* find(char s[], char c){
 
 }
 
 //Part F
-//
+//Find last occurrence of variable "c" in string
 //Write a function that returns a pointer to the last occurrence of the character c in the string s, or nullptr if there is no match. char* find_last(char s[], char c)
 char* find_last(char s[], char c){
 
 }
 
 //Part G
-//
+//Find nth occurrence of variable "c" in string
 //Write a function that returns a pointer to the nth occurrence of the character c in the string s, or nullptr if there is no match. char* find_last(char s[], char c, int n)
 char* find_last(char s[], char c, int n){
 
 }
 
 //Part H
-//
+//Find first occurrence of substring "t" in string "s"
 //Write a function that returns a pointer to the first occurrence of the substring t in the string s, or nullptr if there is no match. char* find(char s[], char t[])
 char* find(char s[], char t[]){
 
 }
 
 //Part I
-//
+//Replace all occurrences of substring "t" in string "s" with substring "u"
+//"s" is the original string, "t" is the substring to be replaced, and "u" is the substring to replace with
 //Write a function that, given strings s, t, and u, returns a string (allocated with the new operator) in which all occurrences of t in s are replaced with u: char* replace_all(const char s[], const char t[], const char u[])
 char* replace_all(const char s[], const char t[], const char u[]){
 
 }
 
 //Part J
-//
+//Reverse an array with pointers, not indexes [i]
 //Write a function that reverses the values of an array of floating-point data: void reverse(double* a, int size) In the function, use two pointer variables, not integer indexes, to traverse the array elements.
 void reverse(double* a, int size){
 
