@@ -75,7 +75,7 @@ int main() {
 
     ofstream outFile(path);
     if (!outFile) {
-        cerr << "Failed to open file at: " << path << endl;
+        cerr << "Failed: " << path << endl;
         return 1;
     }
 
