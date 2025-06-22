@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstring>
 using namespace std;
 
 //Function Definitions
@@ -38,10 +39,10 @@ int main() {
 
     //Part C: Function average
     int size;
-    vector<double> arrAvg(size);
     cout << "\nPart C: Function average" << endl;
     cout << "Please enter the size of the array: ";
     cin >> size;
+    vector<double> arrAvg(size);
     cout << "Please enter " << size << " floating-point numbers: ";
     for (int i = 0; i < size; ++i) {
         cin >> arrAvg[i];
@@ -51,10 +52,10 @@ int main() {
     cout << "The average value is: " << avg << endl;
 
     //Part D: Function maximum
-    vector<double> arrMax(size);
     cout << "\nPart D: Function maximum" << endl;
     cout << "Please enter the size of the array: ";
     cin >> size;
+    vector<double> arrMax(size);
     cout << "Please enter " << size << " floating-point numbers: ";
     for (int i = 0; i < size; ++i) {
         cin >> arrMax[i];
@@ -142,7 +143,6 @@ int main() {
     string strReplace;
     cout << "\nPart I: Function replace_all" << endl;
     cout << "Please enter a string: ";
-    cin.ignore();
     getline(cin, strReplace);
     cout << "Please enter a substring to replace: ";
     string toReplace;
@@ -160,10 +160,10 @@ int main() {
     }
 
     //Part J: Function reverse
-    vector<double> arrReverse(size);
     cout << "\nPart J: Function reverse" << endl;
     cout << "Please enter the size of the array: ";
     cin >> size;
+    vector<double> arrReverse(size);
     cout << "Please enter " << size << " floating-point numbers: ";
     for (int i = 0; i < size; ++i) {
         cin >> arrReverse[i];
@@ -205,53 +205,86 @@ void sort2(double* p, double* q){
 //Return the old value to which P pointed
 //Write a function double replace_if_greater(double* p, double x) that replaces the value to which p points with x if x is greater. Return the old value to which p pointed.
 double replace_if_greater(double* p, double x){
+    double temp = *p;
     if (x > *p){
-        double temp = *p;
         *p = x;
-        return temp;
     }
+    return temp;
 }
 
 //Part C
 //Find average using pointers, not indexes [i]
 //Write a function that computes the average value of an array of floating-point data: double average(double* a, int size) In the function, use a pointer variable, not an integer index, to traverse the array elements.
 double average(double* a, int size){
-    
+    double* end = a + size;
+    double sum = 0;
+    for (double* p = a; p < end; ++p) {
+        sum += *p;
+    }
+    return (size > 0) ? (sum / size) : 0.0;
 }
 
 //Part D
 //Find maximum using pointers, not indexes [i]
 //Write a function that returns a pointer to the maximum value of an array of floating-point data: double* maximum(double* a, int size) If size is 0, return nullptr.
 double* maximum(double* a, int size){
+    if (size == 0) return nullptr;
 
+    double* maxPtr = a;
+    for (int i = 1; i < size; ++i) {
+        if (*(a + i) > *maxPtr) {
+            maxPtr = a + i;
+        }
+    }
+    return maxPtr;
 }
 
 //Part E
 //Find first occurrence of variable "c" in string
 //Write a function that returns a pointer to the first occurrence of the character c in the string s, or nullptr if there is no match. char* find(char s[], char c)
 char* find(char s[], char c){
-
+    for (char* p = s; *p != '\0'; ++p) {
+        if (*p == c) return p;
+    }
+    return nullptr;
 }
 
 //Part F
 //Find last occurrence of variable "c" in string
 //Write a function that returns a pointer to the last occurrence of the character c in the string s, or nullptr if there is no match. char* find_last(char s[], char c)
 char* find_last(char s[], char c){
-
+    char* result = nullptr;
+    for (char* p = s; *p != '\0'; ++p) {
+        if (*p == c) result = p;
+    }
+    return result;
 }
 
 //Part G
 //Find nth occurrence of variable "c" in string
 //Write a function that returns a pointer to the nth occurrence of the character c in the string s, or nullptr if there is no match. char* find_last(char s[], char c, int n)
 char* find_last(char s[], char c, int n){
-
+    int count = 0;
+    for (char* p = s; *p != '\0'; ++p) {
+        if (*p == c) {
+            ++count;
+            if (count == n) return p;
+        }
+    }
+    return nullptr;
 }
 
 //Part H
 //Find first occurrence of substring "t" in string "s"
 //Write a function that returns a pointer to the first occurrence of the substring t in the string s, or nullptr if there is no match. char* find(char s[], char t[])
 char* find(char s[], char t[]){
-
+    int lenT = strlen(t);
+    for (char* p = s; *p != '\0'; ++p) {
+        if (strncmp(p, t, lenT) == 0) {
+            return p;
+        }
+    }
+    return nullptr;
 }
 
 //Part I
@@ -259,12 +292,46 @@ char* find(char s[], char t[]){
 //"s" is the original string, "t" is the substring to be replaced, and "u" is the substring to replace with
 //Write a function that, given strings s, t, and u, returns a string (allocated with the new operator) in which all occurrences of t in s are replaced with u: char* replace_all(const char s[], const char t[], const char u[])
 char* replace_all(const char s[], const char t[], const char u[]){
+    int lenS = strlen(s), lenT = strlen(t), lenU = strlen(u);
+    int count = 0;
 
+    for (int i = 0; i <= lenS - lenT; ++i) {
+        if (strncmp(s + i, t, lenT) == 0) {
+            ++count;
+            i += lenT - 1;
+        }
+    }
+
+    int newLen = lenS + count * (lenU - lenT);
+    char* result = new char[newLen + 1];
+    int i = 0, j = 0;
+
+    while (s[i] != '\0') {
+        if (strncmp(s + i, t, lenT) == 0) {
+            strcpy(result + j, u);
+            j += lenU;
+            i += lenT;
+        } else {
+            result[j++] = s[i++];
+        }
+    }
+
+    result[j] = '\0';
+    return result;
 }
 
 //Part J
 //Reverse an array with pointers, not indexes [i]
 //Write a function that reverses the values of an array of floating-point data: void reverse(double* a, int size) In the function, use two pointer variables, not integer indexes, to traverse the array elements.
 void reverse(double* a, int size){
+    double* left = a;
+    double* right = a + size - 1;
 
+    while (left < right) {
+        double temp = *left;
+        *left = *right;
+        *right = temp;
+        ++left;
+        --right;
+    }
 }
