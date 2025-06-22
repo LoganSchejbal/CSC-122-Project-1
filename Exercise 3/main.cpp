@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-using namespace std;
 #include <vector>
-
+#include <fstream>
+using namespace std;
 
 vector<int> append(vector<int> a, vector<int> b) {
     for (int i = 0; i < b.size(); ++i) {
@@ -10,7 +10,6 @@ vector<int> append(vector<int> a, vector<int> b) {
     }
     return a;
 }
-
 
 vector<int> merge(vector<int> a, vector<int> b) {
     vector<int> result;
@@ -62,30 +61,42 @@ vector<int> merge_sorted(vector<int> a, vector<int> b) {
     return result;
 }
 
-void print_vector(const vector<int>& vec) {
+void print_vector(const vector<int>& vec, ofstream& out) {
     for (int val : vec) {
-        cout << val << " ";
+        out << val << " ";
     }
-    cout << endl;
+
+    
+    out << endl;
 }
 
 int main() {
+    string path = "/Users/josephmirza/Desktop/output.txt"; // Change josephmirza to your computer's name. I am running on Mac
+
+    ofstream outFile(path);
+    if (!outFile) {
+        cerr << "Failed to open file at: " << path << endl;
+        return 1;
+    }
+
     vector<int> vec1 = {1, 4, 9, 16};
     vector<int> vec2 = {9, 7, 4, 9, 11};
 
-    cout << "Append Results: " << endl;
+    outFile << "Append Results: " << endl;
     vector<int> appended = append(vec1, vec2);
-    print_vector(appended);
+    print_vector(appended, outFile);
 
-    cout << "\nMerge Results: " << endl;
+    outFile << "\nMerge Results: " << endl;
     vector<int> merged = merge(vec1, vec2);
-    print_vector(merged);
+    print_vector(merged, outFile);
 
-    cout << "\nMerge Sorted Results: " << endl;
+    outFile << "\nMerge Sorted Results: " << endl;
     vector<int> sort1 = {1, 4, 9, 16};
     vector<int> sort2 = {4, 7, 9, 9, 11};
     vector<int> mergedSorted = merge_sorted(sort1, sort2);
-    print_vector(mergedSorted);
+    print_vector(mergedSorted, outFile);
 
+    outFile.close();
     return 0;
 }
+
