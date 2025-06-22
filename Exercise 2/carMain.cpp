@@ -1,28 +1,36 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 #include "carlmp.cpp"
 
-int main(){
+int main() {
+   
+    string path = "/Users/josephmirza/Desktop/results.txt"; // Change josephmirza to your computer's name, I am using Mac
+    ofstream outFile(path);
     
-    
+    if (!outFile) {
+        cerr << "Failed: " << path << endl;
+        return 1;
+    }
+
     Car car(2025, "BMW");
-    
-    
-    cout << "Make: " << car.getMake() << endl;
-    cout << "Year: " << car.getYear() << endl;
-    
-    
-    cout << "Car accelerating" << endl;
-    
+
+    outFile << "Make: " << car.getMake() << endl;
+    outFile << "Year: " << car.getYear() << endl;
+
+    outFile << "Car accelerating" << endl;
     for (int i = 0; i < 5; i++) {
         car.accelerate();
-        cout << "Speed: " << car.getSpeed() << endl;
+        outFile << "Speed: " << car.getSpeed() << endl;
     }
-    
-    cout << "* Car is now braking *" << endl;
+
+    outFile << "* Car is now braking *" << endl;
     for (int i = 0; i < 5; i++) {
         car.brake();
-        cout << "Braking: " << car.getSpeed() << endl;
+        outFile << "Braking: " << car.getSpeed() << endl;
     }
+
+    outFile.close();
+    return 0;
 }
