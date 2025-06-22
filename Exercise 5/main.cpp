@@ -31,13 +31,12 @@ void printPunchline(ifstream& punchlineFile) {
 }
 
 int main() {
-    ifstream jokeFile("joke.txt");
-    ifstream punchlineFile("punchline.txt");
-
+    ifstream jokeFile("jokes.txt");
     printJoke(jokeFile);
-    printPunchline(punchlineFile);
-
     jokeFile.close();
+    
+    ifstream punchlineFile("punchline.txt");
+    printPunchline(punchlineFile);
     punchlineFile.close();
 
     return 0;
