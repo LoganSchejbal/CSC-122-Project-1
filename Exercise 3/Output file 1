@@ -1,0 +1,14 @@
+Make: BMW
+Year: 2025
+Car accelerating
+Speed: 5
+Speed: 10
+Speed: 15
+Speed: 20
+Speed: 25
+* Car is now braking *
+Braking: 20
+Braking: 15
+Braking: 10
+Braking: 5
+Braking: 0
