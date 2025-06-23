@@ -1,14 +1,8 @@
-Make: BMW
-Year: 2025
-Car accelerating
-Speed: 5
-Speed: 10
-Speed: 15
-Speed: 20
-Speed: 25
-* Car is now braking *
-Braking: 20
-Braking: 15
-Braking: 10
-Braking: 5
-Braking: 0
+Append Results: 
+1 4 9 16 9 7 4 9 11 
+
+Merge Results: 
+1 9 4 7 9 4 16 9 11 
+
+Merge Sorted Results: 
+1 4 4 7 9 9 9 11 16 
